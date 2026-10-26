@@ -72,21 +72,21 @@ app_setup() {
 }
 
 systemd_setup(){
+
     sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/$app_name.service"
     validate $? "Updating $app_name service"
 
-    cp "$scripts_dir/$app_name.service" /etc/systemd/system/$app_name.service
+    cp "$scripts_dir/$app_name.service" "/etc/systemd/system/$app_name.service"
     validate $? "Copying $app_name service"
 
     systemctl daemon-reload
     validate $? "Reloading systemd"
 
-    systemctl enable $app_name &>> "$logs_file"
+    systemctl enable "$app_name" &>> "$logs_file"
     validate $? "Enabling $app_name"
 
-    systemctl start $app_name &>> "$logs_file"
+    systemctl start "$app_name" &>> "$logs_file"
     validate $? "Starting $app_name"
-
 }
 
 restart(){
