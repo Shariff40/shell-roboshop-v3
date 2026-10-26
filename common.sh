@@ -66,7 +66,7 @@ app_setup(){
     unzip "/tmp/$app_name.zip" &>> $logs_file
     validate $? "unzipping $app_name"
 
-}
+    }
 
 systemd_setup(){
     sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/$app_name.service"
