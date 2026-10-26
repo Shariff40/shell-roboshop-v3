@@ -44,8 +44,9 @@ nodejs_setup(){
 }
 
 
-app_setup(){
-        id roboshop &>> "$logs_file"
+
+app_setup() {
+    id roboshop &>> "$logs_file"
     if [ $? -ne 0 ]; then
         useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
         validate $? "Creating system user"
@@ -54,19 +55,20 @@ app_setup(){
     fi
 
     rm -rf /app
-    validate $? "removing old code"
+    validate $? "Removing old code"
 
     mkdir -p /app
     validate $? "Creating app directory"
 
-    curl -L -o "/tmp/$app_name.zip" "https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/$app_name-v4.zip" &>> $logs_file
+    curl -f -L -o "/tmp/$app_name.zip" "https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/$app_name-v4.zip" &>> "$logs_file"
     validate $? "Downloading $app_name"
 
     cd /app
-    unzip "/tmp/$app_name.zip" &>> $logs_file
-    validate $? "unzipping $app_name"
+    validate $? "Changing to app directory"
 
-    }
+    unzip "/tmp/$app_name.zip" &>> "$logs_file"
+    validate $? "Unzipping $app_name"
+}
 
 systemd_setup(){
     sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/$app_name.service"
