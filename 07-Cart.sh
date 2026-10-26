@@ -1,6 +1,6 @@
 #!/bin/bash
 
-app_name=Cart
+app_name=cart
 source ./common.sh
 check_root
 
