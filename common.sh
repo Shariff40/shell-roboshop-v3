@@ -28,12 +28,12 @@ validate() {
         echo -e "$(timestamp) [ERROR] ${2}.. ${R}FAILED${N}" | tee -a $logs_file
         exit 1
     else
-        echo -e "$(timestamp) [INFO] {2}..${G}SUCCESS${N}" | tee -a $logs_file 
+        echo -e "$(timestamp) [INFO] ${2}..${G}SUCCESS${N}" | tee -a $logs_file
     fi
 }
 
-nodejs_setup(){}
 
+nodejs_setup(){
     dnf module disable nodejs -y &>> $logs_file
     dnf module enable nodejs:24 -y &>> $logs_file
     dnf install nodejs -y &>> $logs_file
@@ -42,6 +42,7 @@ nodejs_setup(){}
     npm install &>> $logs_file
     validate $? "Installing dependencies"
 }
+
 
 app_setup(){
         id roboshop &>> "$logs_file"
