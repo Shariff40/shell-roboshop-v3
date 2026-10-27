@@ -5,6 +5,7 @@ logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
 scripts_dir=$(dirname "$(realpath "$0")")
 DOMAIN_NAME="shariffdevops.online"
+app_name=catalogue
 
 R="\e[31m"
 G="\e[32m"
