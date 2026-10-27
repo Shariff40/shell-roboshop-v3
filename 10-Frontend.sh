@@ -24,10 +24,10 @@ sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/roboshop.conf"
 cp "$scripts_dir/roboshop.conf" /etc/nginx/default.d/roboshop.conf
 validate $? "copied roboshop config"
 
-Nginx -t &>> "$logs_file"
+nginx -t &>> "$logs_file"
 validate $? "Nginx configuration"
 
-systemctl restart nginx &>>logs_file
+systemctl restart nginx &>> "$logs_file"
 validate $? "Restarting nginx"
 
 total_time
