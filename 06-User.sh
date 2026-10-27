@@ -8,6 +8,4 @@ app_setup
 nodejs_setup
 systemd_setup
 
-
-
 total_time
