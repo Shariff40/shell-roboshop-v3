@@ -15,11 +15,11 @@ dnf install mongodb-mongosh -y &>> $logs_file
 validate $? "installing MongoDB Client"
 
 
-product_count=$(mongosh --host "mongodb.$domain_name" --quiet --eval 'db.getSiblingDB("catalogue").products.countDocuments()' 2>> "$logs_file")
+product_count=$(mongosh --host "mongodb.$DOMAIN_NAME" --quiet --eval 'db.getSiblingDB("catalogue").products.countDocuments()' 2>> "$logs_file")
 validate $? "Connecting to MongoDB"
 
 if [ "$product_count" -eq 0 ]; then
-mongosh --host "mongodb.$domain_name" </app/db/master-data.js &>> $logs_file
+mongosh --host "mongodb.$DOMAIN_NAME" </app/db/master-data.js &>> $logs_file
 validate $? "Loading products"
 else
     echo -e "$(timestamp) [INFO] Products are already loaded...${Y}SKIPPING${N}"
