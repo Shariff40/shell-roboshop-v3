@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source./common.sh
+check_root
 
 dnf module disable nginx -y  &>>logs_file
 dnf module enable nginx:1.26 -y &>>logs_file
@@ -28,5 +30,4 @@ validate $? "Nginx configuration"
 systemctl restart nginx &>>logs_file
 validate $? "Restarting nginx"
 
-echo "$(timestamp) [INFO] Script completed in $SECONDS seconds"
-echo "$(timestamp) [INFO] ==== Script completed Execution =====" | tee -a $logs_file
+total_time
