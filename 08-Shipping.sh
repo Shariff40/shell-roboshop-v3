@@ -5,7 +5,7 @@ source ./common.sh
 check_root
 
 app_setup
-java-setup
+java_setup
 systemd_setup
 
 total_time
