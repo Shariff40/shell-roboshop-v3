@@ -5,7 +5,7 @@ source ./common.sh
 check_root
 
 app_setup
-python-setup
+python_setup
 systemd_setup
 
 

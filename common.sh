@@ -67,14 +67,16 @@ java_setup(){
 }
 
 python_setup(){
-    dnf install python3.14 python3.14-pip -y &>> $logs_file
+  python_setup(){
+    dnf install python3.14 python3.14-pip -y &>> "$logs_file"
     validate $? "Installing Python 3.14"
-    python3.14 -m venv /app/.venv
-    validate $? "creating virtual environment"
 
-    /app/.venv/bin/pip install -r requirements.txt &>> $logs_file
-    validate $? "installing dependencies"
-    }
+    python3.14 -m venv /app/.venv
+    validate $? "Creating virtual environment"
+
+    /app/.venv/bin/pip install -r requirements.txt &>> "$logs_file"
+    validate $? "Installing dependencies"
+}
 
 app_setup() {
     id roboshop &>> "$logs_file"
