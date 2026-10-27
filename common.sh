@@ -4,6 +4,8 @@ user_id=$(id -u)
 logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
 scripts_dir=$(dirname "$(realpath "$0")")
+domain_name="shariffdevops.online"
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -15,6 +17,7 @@ if [ "$user_id" -ne 0 ]; then
     exit 1
 fi
 }
+
 
 timestamp() {
     date "+%F %T"
