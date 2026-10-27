@@ -76,7 +76,7 @@ app_setup() {
 
 systemd_setup(){
 
-    sed -i "s/DOMAIN_NAME/$DOMAIN_NAME/g" "$scripts_dir/$app_name.service"
+    sed -i "s/DOMAIN_NAME/DOMAIN_NAME/g" "$scripts_dir/$app_name.service"
     validate $? "Updating $app_name service"
 
     cp "$scripts_dir/$app_name.service" "/etc/systemd/system/$app_name.service"
